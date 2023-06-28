@@ -41,6 +41,19 @@ header a.logo {
 header nav {
     display: flex;
     gap: 15px;
+    align-items: center;
+}
+
+header nav a {
+    background-color: #3471aa;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: .95rem;
 }
 
 div.post {
