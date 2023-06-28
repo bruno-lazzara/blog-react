@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Editor from "../Editor";
+import Editor from "../components/Editor";
 import postService from "../services/PostService";
 
 export default function CreatePost() {
