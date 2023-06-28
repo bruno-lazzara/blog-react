@@ -14,3 +14,16 @@ exports.register = async (username, password) => {
         headers: { 'Content-Type': 'application/json' }
     });
 };
+
+exports.checkCredentials = async () => {
+    return await fetch('http://localhost:4000/profile', {
+        credentials: 'include'
+      });
+};
+
+exports.logout = async () => {
+    return await fetch('http://localhost:4000/logout', {
+        credentials: 'include',
+        method: 'POST'
+      });
+};
