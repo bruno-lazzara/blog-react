@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import Editor from "../components/Editor";
 import postService from "../services/PostService";
 
@@ -63,6 +63,7 @@ export default function EditPost() {
             <Editor value={content} onChange={setContent} />
 
             <button style={{ marginTop: '5px' }}>Update Post</button>
+            <Link className="cancel-btn" to={`/post/${id}`} style={{ marginTop: '5px' }}>Cancel</Link>
         </form>
     );
 }
