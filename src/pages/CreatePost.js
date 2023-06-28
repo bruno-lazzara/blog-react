@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Editor from "../Editor";
+import postService from "../services/PostService";
 
 export default function CreatePost() {
     const [title, setTitle] = useState('');
@@ -16,11 +17,8 @@ export default function CreatePost() {
         data.set('summary', summary);
         data.set('content', content);
         data.set('file', files[0]);
-        const response = await fetch('http://localhost:4000/post', {
-            method: 'POST',
-            body: data,
-            credentials: 'include'
-        });
+
+        const response = await postService.create(data);
 
         if (response.ok) {
             setRedirect(true);

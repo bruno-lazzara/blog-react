@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../Editor";
+import postService from "../services/PostService";
 
 export default function EditPost() {
     const { id } = useParams();
@@ -11,7 +12,7 @@ export default function EditPost() {
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:4000/post/' + id)
+        postService.getPostById(id)
             .then(response => {
                 response.json().then(postInfo => {
                     setTitle(postInfo.title);
@@ -33,11 +34,7 @@ export default function EditPost() {
             data.set('file', files?.[0]);
         }
 
-        const response = await fetch('http://localhost:4000/post', {
-            method: 'PUT',
-            body: data,
-            credentials: 'include'
-        });
+        const response = await postService.update(data);
 
         if (response.ok) {
             setRedirect(true);
