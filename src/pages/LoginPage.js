@@ -1,20 +1,19 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import userService from "../services/UserService";
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
-    const {setUserInfo} = useContext(UserContext);
+    const { setUserInfo } = useContext(UserContext);
+
     async function login(ev) {
         ev.preventDefault();
-        const response = await fetch('http://localhost:4000/login', {
-            method: 'POST',
-            body: JSON.stringify({ username, password }),
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
-        });
+
+        const response = await userService.login(username, password);
+        
         if (response.ok) {
             response.json().then(userInfo => {
                 setUserInfo(userInfo);
